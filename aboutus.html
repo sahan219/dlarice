@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Header with Fullscreen Video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Transparent Header */
+        header {
+            display: flex;
+            justify-content: center; /* Center the header content */
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0); /* Fully Transparent */
+            padding: 15px 20px;
+            width: 100%;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 20px;
+        }
+        .logo img {
+            height: 40px;
+        }
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-left: 10px;
+        }
+
+        /* Navigation */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center; /* Center the nav links */
+            gap: 30px; /* Increased space between links */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .nav-links li {
+            display: inline;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .nav-links a:hover {
+            color: #f4a261;
+            transform: translateY(-2px); /* Hover effect */
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                background-color: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                padding: 20px 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Video Fullscreen */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Video Overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Scroll Effect - Semi-transparent Header */
+        .scrolled {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            margin-top: 80px;
+        }
+
+        /* About Us Section */
+        #about {
+            margin-top: 30px;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: url('https://i.postimg.cc/HLXSkC90/fauzan-saari-l-T7n6-V9-OGg-Q-unsplash.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .footer-links a:hover {
+            color: #f4a261;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header id="header">
+        <div class="logo">
+            <img src="https://i.postimg.cc/GhZtVrJ7/DALL-E-2025-03-01-07-49-48-A-logo-design-for-DLA-Rice-Producer-The-logo-should-feature-the-text.webp" alt="Your Company Logo">
+            <span></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+        </ul>
+
+        <button class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+    </header>
+
+    <!-- Video Section -->
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="3145223-sd_426_240_30fps.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Welcome to Our Website</h1>
+        <p>Explore our content below.</p>
+
+        <!-- About Us Section -->
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We are a company dedicated to producing high-quality rice products. Our mission is to provide our customers with the best products at affordable prices. With years of experience in the industry, we prioritize quality, sustainability, and customer satisfaction.</p>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Your Company. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="products.html">Our Products</a>
+                <a href="contact.html">Contact</a>
+                <a href="aboutus.html">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        window.addEventListener('scroll', function() {
+            let header = document.getElementById("header");
+            header.classList.toggle("scrolled", window.scrollY > 50);
+        });
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
